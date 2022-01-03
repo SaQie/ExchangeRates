@@ -1,0 +1,39 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kursy walut</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+    <br>
+    <div class="text-center">
+        <h2>Kursy walut Narodowego Banku Polskiego</h2>
+        <p>Proszę wybrać walutę: </p>
+        <form th:action="@{/waluta}" th:method="post">
+            <select class="form-select" size="4" aria-label="Wybierz walute" th:field="${currencyCode.code}" required>
+                <th:block th:each="curency : ${currency}">
+                    <option th:value="${curency.name()}" th:text="${curency.getDescription()} + ' (' + ${curency.name()} + ')'"></option>
+                </th:block>
+            </select>
+            <br>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <a href="/waluta" class="text-center"> <button class="btn btn-secondary" type="submit">Sprawdz kurs wybranej waluty</button></a>
+            </div>
+
+        </form>
+        <br>
+        <p>Lub </p>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="/kursy" class="text-center"> <button class="btn btn-secondary" type="button">Sprawdz kursy wszystkich walut</button></a>
+        </div>
+    </div>
+</div>
+
+
+</select>
+</body>
+</html>

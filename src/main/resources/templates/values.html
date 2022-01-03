@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="https://www.thymeleaf.org" lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Kursy walut</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<br>
+<h2 class="text-center" th:text="'Dane aktualne na dzień: ' + ${multipleCurrency.date}"></h2>
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a href="/waluta" class="text-center"> <button class="btn btn-secondary" type="button">Wróć na stronę główną</button></a>
+</div>
+<br>
+<table class="table table table-striped table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Waluta</th>
+        <th scope="col">Kod</th>
+        <th scope="col">Kupno</th>
+        <th scope="col">Sprzedaż</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="values : ${multipleCurrency.rates}">
+        <th scope="row" th:text="${values.currency.toUpperCase()}"></th>
+        <td th:text="${values.code}"></td>
+        <td th:text="${values.ask}"></td>
+        <td th:text="${values.bid}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
